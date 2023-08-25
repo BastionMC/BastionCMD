@@ -1,0 +1,24 @@
+{
+    "actions": [
+        {
+            "associated_file": "new_mcwebgui_app",
+            "display": "Create a new MCWebGUI app",
+            "description": "Requires internet access. This downloads the source from the latest GitHub release of MCWebGUI, and creates a \"script_importer.js\" and \"stylesheet_importer.js\" file to easily add new scripts and stylesheets, which is also used by MCWebGUI for importing. A new \"index.html\" file will also be created and automatically be filled with a template."
+        },
+        {
+            "associated_file": "new_mcpygui_installer",
+            "display": "Create a new MCPyGUI Installer",
+            "description": "Requires an installation of MCPyGUI. This will create a new Python file that uses MCPyGUI to create a Minecraft-themed installer layout. There are multiple layouts to choose from and features an easy-to-use setup layout, right here in the command prompt. Additionally, if PyInstaller is installed, a Batch file for compiling will also be created."
+        },
+        {
+            "associated_file": "update_mcwebgui_app",
+            "display": "Update a vanilla MCWebGUI app",
+            "description": "Requires internet access. Updates vanilla installations of MCWebGUI, using the latest GitHub source release. This is only possible if the file structure of the project is the same as the vanilla MCWebGUI; If it weren't, your project's file structure would just be pure chaos."
+        },
+        {
+            "associated_file": "update_netherrack_app",
+            "display": "Update a modified Netherrack app",
+            "description": "Requires internet access. Updates modifications of Netherack (including Nylium), using the latest GitHub source release. This is only possible if the file structure of the project is the same as Netherrack's and includes old files; If it weren't, your project's file structure would just be pure chaos."
+        }
+    ]
+}

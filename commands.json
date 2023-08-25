@@ -1,0 +1,24 @@
+{
+    "commands": [
+        {
+            "command": "full",
+            "description": "Display a list containing all possible actions without cropped names and helpful descriptions for each option."
+        },
+        {
+            "command": "cmds",
+            "description": "Display a list containing all commands for navigating the BastionCMD interface. You are on it right now!"
+        },
+        {
+            "command": "exit",
+            "description": "This command will close BastionCMD and return you to the default Windows command prompt or Powershell."
+        },
+        {
+            "command": "intro",
+            "description": "Redisplay the opening dialog of BastionCMD in case you missed anything or just don't want to scroll up."
+        },
+        {
+            "command": "clear",
+            "description": "Enables screen clearing, for the case that you feel like the interface is a bit cluttered."
+        }
+    ]
+}
