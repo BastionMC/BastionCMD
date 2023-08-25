@@ -30,8 +30,14 @@ introduction(actions)
 running = True
 debug = False
 clear = False
-while running:
 
+associated_files = []
+for action in actions:
+    associated_files.append(action["associated_file"])
+
+possible_inputs = ["exit", "full", "intro", "cmds", "clear"].append(associated_files)
+
+while running:
     to_run = input(Fore.BLACK + Style.BRIGHT + "> " + Style.RESET_ALL)
 
     if clear:
