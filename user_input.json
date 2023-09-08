@@ -1,0 +1,39 @@
+{
+    "user_input": {
+        "new_mcwebgui_app": [
+            {
+                "type": "open_empty_folder",
+                "default": "^REQUIRED^",
+                "prompt": "Empty Project Folder"
+            },
+            {
+                "type": "input",
+                "default": "My MCWebGUI Project",
+                "prompt": "Project Name"
+            },
+            {
+                "type": "select_true_false",
+                "default": false,
+                "prompt": "Custom title bar? (for Electron, etc...)"
+            },
+            {
+                "type": "number_range",
+                "range": [0, 100],
+                "default": 100,
+                "prompt": "Default UI Volume?"
+            },
+            {
+                "type": "number_range",
+                "range": [0, 100],
+                "default": 100,
+                "prompt": "Default Video Volume?"
+            }
+        ],
+        "new_mcpygui_installer": [
+        ],
+        "update_mcwebgui_app": [
+        ],
+        "update_netherrack_app": [
+        ]
+    }
+}

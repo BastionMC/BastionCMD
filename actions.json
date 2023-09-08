@@ -8,7 +8,7 @@
         {
             "associated_file": "new_mcpygui_installer",
             "display": "Create a new MCPyGUI Installer",
-            "description": "Requires an installation of MCPyGUI. This will create a new Python file that uses MCPyGUI to create a Minecraft-themed installer layout. There are multiple layouts to choose from and features an easy-to-use setup layout, right here in the command prompt. Additionally, if PyInstaller is installed, a Batch file for compiling will also be created."
+            "description": "Requires an installation of MCPyGUI. This will create a new Python file that uses MCPyGUI to create a Minecraft-themed installer layout. There are multiple layouts to choose from and it features an easy-to-use setup layout, right here in the command prompt. Additionally, if PyInstaller is installed, a Batch file for compiling will also be created."
         },
         {
             "associated_file": "update_mcwebgui_app",

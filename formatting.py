@@ -1,4 +1,5 @@
 # This file's main purpose is to make stuff look good, it's not very readable.
+# Like there's no order at all lol.
 
 from colorama import *
 
@@ -127,7 +128,7 @@ def split():
     print(Fore.WHITE + "-------------------------------------------------------------------------\n" + Style.RESET_ALL)
 
 def introduction(actions):
-    print(Back.WHITE + Fore.BLACK + "     Welcome to the BastionCMD tool! Type an action ID to continue.      " + Style.RESET_ALL + "\n")
+    print(Back.WHITE + Fore.BLACK + "     Welcome to the BastionCMD tool! Type an action ID to continue.      " + Back.BLACK + "." + Style.RESET_ALL + "\n")
     actions_compact(actions)
     split()
     print(Fore.BLACK + Style.BRIGHT + " full - Show a full list of actions without cropped names and\n        descriptions for each option\n" + Style.RESET_ALL)
@@ -143,7 +144,7 @@ def stop_scroll():
 
 # Remove this once development is complete
 def in_development():
-    print(Back.YELLOW + Fore.BLACK + "             Disclaimer: BastionCMD is still in development!             " + Style.RESET_ALL + "\n")
+    print(Back.YELLOW + Fore.BLACK + "             Disclaimer: BastionCMD is still in development!             " + Back.BLACK + "." + Style.RESET_ALL + "\n")
     print(" " + "\n".join(split_string("This tool is still in development! Some actions are still placeholders and not fully finished, and you might experience some bugs while using it. Please report any new issues and typos that you find, which aren't yet mentioned as an issue on GitHub, but only if you are on the newest version, thanks!\n- The Bastion Team\n", additional_action_display_name_length)) + "\n")
 # ^^^
 def debug_enabled():
@@ -157,3 +158,6 @@ def clear_enabled():
     print("\n" + Back.WHITE + Fore.BLACK + "                        Screen clearing enabled!                         " + Style.RESET_ALL + "\n")
 def clear_disabled():
     print("\n" + Back.WHITE + Fore.BLACK + "                       Screen clearing disabled!                         " + Style.RESET_ALL + "\n")
+def shortcut_run():
+    print("\n" + Back.WHITE + Fore.BLACK + "                         You just ran a shortcut!                        " + Back.BLACK + "." + Style.RESET_ALL + "\n")
+    print(" " + "\n".join(split_string("Shorcuts allow you to easily execute single actions with one command, and it allows you to automate them! You will return to the command prompt after this shortcut is done running.\n", additional_action_display_name_length)))
