@@ -1,0 +1,130 @@
+╭─ ! ──────── BastionCMD is still in development ──────────────╮
+│ Hi! FYI - We are still working on and polishing BastionCMD.  │
+│ You can tell us your feature ideas in our Discord!           │
+│      You can disable this message in the settings.           │
+╰──────────────────────────────────────────────────────────────╯
+
+╭─ ? ──────────────────────────────────────────────────────────╮
+│ BastionCMD                                                   │
+╰──────────────────────────────────────────────────────────────╯
+
+╭─ X ──────────────────────────────────────────────────────────╮
+│ Uh oh - looks like something went wrong, here's some error   │
+│ info, which will (hopefully) help you troubleshoot/report    │
+│ this issue:                                                  │
+$c
+╰──────────────────────────────────────────────────────────────╯
+
+╭─ X ──────────────────────────────────────────────────────────╮
+│ It seems like something went seriously wrong, causing a      │
+│ crash. Please report this issue as soon as possible to us.   │
+│ Here's some error info, which will (hopefully) help you      │
+│ troubleshoot/report this issue:                              │
+$c
+╰──────────────────────────────────────────────────────────────╯
+
+╭─────────── You aren't connected to the internet ─────────────╮
+│  ---__     Some features of BastionCMD require an internet-  │
+│  ---__ \   connection in order to function. If you think     │
+│  ---_ \ \  that you should have one, check if your WLAN-     │
+│      \ | | is enabled, or if your LAN cable is plugged in.   │
+│  ()  | | |                                                   │
+╰──────────────────────────────────────────────────────────────╯
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╭─ ! ──────── BastionCMD is still in development ──────────────╮
+│ Hi! FYI - We are still working on and polishing BastionCMD.  │
+│ If you have feature ideas, tell them to us in our Discord!   │
+│       You can disable this message in the settings.          │
+╰──────────────────────────────────────────────────────────────╯
+
+ ───────────────────────── BastionCMD ─────────────────────────
+
+╭─────────────────────────────╮  ╭─────────────────────────────╮
+│ Update the source of an     │  │ Add the Dashboard to an     │
+│ existing MCWebGUI app.      │  │ existing Quartz Server.     │
+│                             │  │                             │
+│ update-mcwebgui-app     WL! │  │ add-quartz-dashboard      W │
+╰─────────────────────────────╯  ╰─────────────────────────────╯
+╭─────────────────────────────╮  ╭─────────────────────────────╮
+│ Create a Minecraft-themed   │  │ Create a new MCWebGUI app.  │
+│ logo accurately.            │  │ (Desktop or Web)            │
+│                             │  │                             │
+│ create-logo              WL │  │ create-mcwebgui-app     WL! │
+╰─────────────────────────────╯  ╰─────────────────────────────╯
+╭─────────────────────────────╮  ╭─────────────────────────────╮
+│ Create a new MCPyGUI app.   │  │ Setup a new Quartz Server.  │
+│                             │  │                             │
+│ create-mcpygui-app      WL! │  │ setup-quartz-server     WL! │
+╰─────────────────────────────╯  ╰─────────────────────────────╯
+
+ ...15 more actions have been abreviated              --actions
+
+  ! = Requires internet                    WL = Windows, Linux
+ ──────────────────────────────────────────────────────────────
+ 
+  There is a new BastionCMD version available. Would you like
+  to update to BastionCMD $c?
+  
+  Dismiss this update                                --dismiss 
+  Update BastionCMD                                   --update
+  
+ ──────────────────────────────────────────────────────────────
+ 
+   --settings    --actions    --help    --discord    --github
+ 
+ ──────────────────────────────────────────────────────────────
+ 
+  > 
