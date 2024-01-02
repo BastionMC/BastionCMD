@@ -1,0 +1,1 @@
+Files needed to run your own static server. Our server is located at https://bastionmc.github.io/api/cmd/ .

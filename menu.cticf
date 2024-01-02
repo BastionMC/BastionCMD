@@ -95,7 +95,7 @@ v   not use it multiple times in a file, or else only the
 §§wbf  ! §§wnf= Requires internet                    §§cdfW§§cbfL §§wnf= §§cdfWindows§§wnf, §§cbfLinux§$ $§
 §§0bf   --settings    --actions    --help    --discord    --github§$ $§
 §§wnf  There is a new BastionCMD version available. Would you like
-  to update to BastionCMD $$?
+  to update to BastionCMD v$$?
   
   §§wbfIgnore this update                                  §§0bf--ignore 
   §§wbfUpdate BastionCMD                                   §§0bf--update§$ $§

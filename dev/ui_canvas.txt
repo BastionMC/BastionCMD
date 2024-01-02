@@ -96,7 +96,7 @@ $c
 │ Update the source of an     │  │ Add the Dashboard to an     │
 │ existing MCWebGUI app.      │  │ existing Quartz Server.     │
 │                             │  │                             │
-│ update-mcwebgui-app     WL! │  │ add-quartz-dashboard      W │
+│ update-mcwebgui-app     WL! │  │ add-quartz-dashboard     W! │
 ╰─────────────────────────────╯  ╰─────────────────────────────╯
 ╭─────────────────────────────╮  ╭─────────────────────────────╮
 │ Create a Minecraft-themed   │  │ Create a new MCWebGUI app.  │
