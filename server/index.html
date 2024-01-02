@@ -4,16 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BastionCMD API</title>
-    <style>img {position:relative; top: 18px;height:48px}</style>
+    <style>
+        * {
+            font-family: sans-serif;
+            text-decoration: none;
+        }
+        img {
+            position:relative;
+            top: 18px;
+            height: 48px;
+        }
+        a {
+            color: dodgerblue;
+        }
+        #footer {
+            user-select: none;
+        }
+        #footer > * {
+            display: inline;
+        }
+        html {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        body {
+            margin: 32px;
+            width: 512px;
+        }
+        h1, h2, h3, h4, h5 {
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+        }
+        #tutorial-step {
+            content: attr(step);
+            width: 64px;
+            display: inline-block;
+            font-size: xx-large;
+            text-align: center;
+            font-weight: 900;
+            position: relative;
+            height: auto;
+        }
+        #tutorial-instruction {
+            display: inline-block;
+            width: 384px !important;
+        }
+        #tutorial-section {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        code {
+            padding-right: 4px;
+            padding-left: 4px;
+            border-radius: 4px;
+            background-color: lightgray;
+            font-family: monospace;
+            color: purple;
+            position: relative;
+            bottom: 2px;
+        }
+        kbd {
+            padding: 2px;
+            padding-right: 8px;
+            padding-left: 8px;
+            border-radius: 4px;
+            background: linear-gradient(gainsboro, lightgray);
+            position: relative;
+            bottom: 2px;
+            box-shadow: 0px 2px gray;
+            font-size: 12px;
+            color: dimgray;
+        }
+        #last-updated {
+            text-align: center;
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
 </head>
 <body>
-    Oh hey. This is the directory used for hosting <a href="https://www.github.com/BastionMC/BastionCMD">BastionCMD</a> data.
-    <br><br>
-    <strong>Files:</strong><br>
-    • <a href="./version.json">version.json</a><br>
-    • <a href="./update.json">update.json</a><br>
-    • <a href="./action_data.json">action_data.json</a><br>
-    <br>
-    <a href="https://github.com/BastionMC/BastionCMD/tree/main/server"><img src="logo.png"></a>v1.0 • Licensed under the <a href="https://github.com/BastionMC/BastionCMD/blob/main/LICENSE"><img src="license.svg"></a> • © BastionMC 2024</sub>
+    <p>Oh, hello! This is the API for <a href="https://www.github.com/BastionMC/BastionCMD">BastionCMD</a>.
+    It is used to host files for actions that need to frequently change, without the program needing to download an update.</p>
+    <p>This API is, like the <a href="https://github.com/BastionMC/BastionCMD/tree/main/client">client</a>, fully <a href="https://github.com/BastionMC/BastionCMD/tree/main/server">open source</a>! So you can host it yourself, if Bastion doesn't exist anymore.
+    (Which hopefully won't happen any time soon...)</p>
+    
+    <h2>JSON API Files:<br></h2>
+    <ul>
+        <li><a href="./version.json">version.json</a></li>
+        <li><a href="./update.json">update.json</a></li>
+        <li><a href="./action_data.json">action_data.json</a></li>
+    </ul>
+
+    <h1>How to host the API yourself (Using GitHub Pages)</h1>
+    <div id="tutorial-section">
+        <span id="tutorial-step">1.</span>
+        <span id="tutorial-instruction">
+            Download BastionCMD's <a href="https://www.github.com/BastionMC/BastionCMD">source</a>, and unzip the folder.
+            Copy the <code>server</code> folder to a location where you can keep it temporarily.
+        </span>
+    </div>
+    <div id="tutorial-section">
+        <span id="tutorial-step">2.</span>
+        <span id="tutorial-instruction">
+            <a href="https://docs.github.com/en/pages/quickstart#creating-your-website">Create a GitHub Pages Repository.</a>
+            After you've done that, use git to <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">clone that repository to your device</a>.
+            Delete all the files that are in the repository folder.
+        </span>
+    </div>
+    <div id="tutorial-section">
+        <span id="tutorial-step">3.</span>
+        <span id="tutorial-instruction">
+            Open the <code>server</code> folder that you have saved. Hit <kbd>CTRL</kbd> + <kbd>A</kbd> to select all files, then use <kbd>CTRL</kbd> + <kbd>X</kbd> to cut all the files.
+        </span>
+    </div>
+    <div id="tutorial-section">
+        <span id="tutorial-step">4.</span>
+        <span id="tutorial-instruction">
+            Open your repository folder, and use <kbd>CTRL</kbd> + <kbd>V</kbd> to paste the <code>server</code> files in your repository.
+        </span>
+    </div>
+    <div id="tutorial-section">
+        <span id="tutorial-step">5.</span>
+        <span id="tutorial-instruction">
+            <a href="https://github.com/git-guides/git-commit">Commit your changes to the repository</a>, then <a href="https://github.com/git-guides/git-push">push them</a>.
+            You'll have to wait a bit for GitHub Pages to update, so go to your site's URL and hit refresh until you see this page.
+            <strong>Done! The API should work now.</strong>
+        </span>
+    </div>
+    
+    <p id="last-updated">This tutorial was last updated on the 3rd of January, 2024.</p>
+
+    <h1>Get the client to use your API</h1>
+    <p>The client will still use the old API.
+    We'll have to modify the client's code to redirect it to the server you have just created.
+    Don't worry, this should be easy; even for someone who doesn't know how to code.</p>
+    <div id="tutorial-section">
+        <span id="tutorial-step">1.</span>
+        <span id="tutorial-instruction">
+            Go to the unzipped folder that you've downloaded before.
+            Now copy the <code>client</code> folder, and paste it somewhere, where you can find it again, so you can use it later.
+        </span>
+    </div>
+    <p>(You can, alternatively, also modify the already exisiting client.
+    Just navigate to it's folder - the tutorial will still work.)</p>
+    <div id="tutorial-section">
+        <span id="tutorial-step">2.</span>
+        <span id="tutorial-instruction">
+            In the <code>client</code> folder, you'll see a whole bunch of files.
+            We're looking for one named <code>server.py</code>.
+            Open this file in a text editor of your choice. (Notepad also works.)
+        </span>
+    </div>
+    <div id="tutorial-section">
+        <span id="tutorial-step">3.</span>
+        <span id="tutorial-instruction">
+            Locate the line that says <code>server_url = "..."</code>.
+            Change the URL in the quotation marks to your server's URL.
+            Don't forget to add the <code>/</code> at the end, its important!
+        </span>
+    </div>
+    <div id="tutorial-section">
+        <span id="tutorial-step">4.</span>
+        <span id="tutorial-instruction">
+            Now we'll test if everything works.
+            If you are on Windows, run the <code>start.bat</code> file.
+            If you are on Linux, run the <code>main.py</code> file.
+            Select one of the actions marked with an <code>!</code>, those are the ones that use internet.
+            If they start up without any problem, then congratulations!
+            <strong>Your API is now interacting with the client.</strong>
+        </span>
+    </div>
+
+    <p id="last-updated">This tutorial was last updated on the 3rd of January, 2024.</p>
+
+    <div id="footer">
+        <a href="https://github.com/BastionMC/BastionCMD/tree/main/server">
+            <img draggable="false" src="logo.png">
+        </a>
+        <p>v1.0 • Licensed under the</p>
+        <a href="https://github.com/BastionMC/BastionCMD/blob/main/LICENSE">
+            <img draggable="false" src="license.svg">
+        </a>
+        <p> • © BastionMC 2024</p>
+    </div>
 </body>
 </html>
