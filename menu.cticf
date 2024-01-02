@@ -99,8 +99,8 @@ v   not use it multiple times in a file, or else only the
   
   §§wbfIgnore this update                                  §§0bf--ignore 
   §§wbfUpdate BastionCMD                                   §§0bf--update§$ $§
-§§ybf╭─ ! ──────── BastionCMD is still in development ──────────────╮
-│ §§wnfHi! FYI - We are still working on and polishing BastionCMD.  §§ybf│
-│ §§wnfIf you have feature ideas, tell them to us in our Discord!   §§ybf│
-│       §§0bfYou can disable this message in the settings.          §§ybf│
+§§ynf╭─ ! ──────── BastionCMD is still in development ──────────────╮
+│ §§wnfHi! FYI - We are still working on and polishing BastionCMD.  §§ynf│
+│ §§wnfIf you have feature ideas, tell them to us in our Discord!   §§ynf│
+│       §§0bfYou can disable this message in the settings.          §§ynf│
 ╰──────────────────────────────────────────────────────────────╯§$
