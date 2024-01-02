@@ -1,4 +1,5 @@
 {
+    "description": "Update the source of an existing MCWebGUI app.",
     "needs_connection": true,
     "windows": true,
     "linux": true

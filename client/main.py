@@ -43,7 +43,7 @@ ui["needs_update"] = ui["menu"][15]
 def intro():
     print("\n" + ui["title"] + "\n\n" + ui["requirements"]["banner"] + "\n\n" + ui["divider"])
     
-    if not(server.needs_update()[0]):
+    if server.connection() and server.needs_update()[0]:
         print("\n" + cticf.inserts(ui["needs_update"], server.needs_update()[1]) + "\n\n" + ui["divider"])
     
     print("\n" + ui["commands"] + "\n\n" + ui["divider"])

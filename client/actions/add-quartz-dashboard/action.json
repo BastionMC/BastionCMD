@@ -1,4 +1,5 @@
 {
+    "description": "Add the Dashboard to an existing Quartz Server.",
     "needs_connection": true,
     "windows": true,
     "linux": false

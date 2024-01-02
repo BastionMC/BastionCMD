@@ -1,4 +1,5 @@
 {
+    "description": "Create a new MCWebGUI app. (Desktop or Web)",
     "needs_connection": true,
     "windows": true,
     "linux": true
