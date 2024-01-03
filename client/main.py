@@ -1,10 +1,11 @@
 import cticf
-import server, update, actions
+import server, update, actions, formatting
 
 import os, sys
 from pathlib import Path
 
 import renput
+if os.name == "nt": input = renput.input
 
 file_path = Path(sys.argv[0]).parent.absolute()
 
@@ -40,8 +41,36 @@ ui["dialogs"] = {
 ui["commands"] = ui["menu"][14]
 ui["needs_update"] = ui["menu"][15]
 
+ui["action_squares"] = [
+    ui["menu"][8],
+    ui["menu"][7],
+    ui["menu"][6]
+]
+
+def intro_actions():
+    showcase_actions = actions.showcase_actions()
+    action_squares = [showcase_actions[i:i+2] for i in range(0,len(showcase_actions),2)]
+
+    for segment in action_squares:
+        height = max(len(segment[0]["description"]), len(segment[1]["description"]))
+
+        for action in segment:
+            while len(action["description"]) < height:
+                action["description"].append(27 * " ")
+
+        formatted_description = formatting.line_for_line(segment[0]["description"], segment[1]["description"])
+
+        print(cticf.inserts(
+            ui["action_squares"][height-1],
+            *formatted_description
+        ))
+
 def intro():
-    print("\n" + ui["title"] + "\n\n" + ui["requirements"]["banner"] + "\n\n" + ui["divider"])
+    print("\n" + ui["title"])
+
+    intro_actions()
+
+    print("\n" + ui["requirements"]["banner"] + "\n\n" + ui["divider"])
     
     if server.connection() and server.needs_update()[0]:
         print("\n" + cticf.inserts(ui["needs_update"], server.needs_update()[1]) + "\n\n" + ui["divider"])
