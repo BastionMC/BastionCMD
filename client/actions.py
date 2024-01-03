@@ -1,6 +1,7 @@
 from pathlib import Path
 import os, sys, json
 import formatting
+from importlib import import_module
 
 file_path = Path(sys.argv[0]).parent.absolute()
 
@@ -24,7 +25,7 @@ def showcase_actions():
     for action in planned_showcase_actions:
         showcase_action = {
             "description": formatting.split_up(action["description"], 27),
-            "path": formatting.fill_space(formatting.cut_off(action["path"], 23), 24),
+            "path": formatting.fill_space(formatting.cut_off(action["path"], 23), 23),
             "windows": action["windows"],
             "linux": action["linux"],
             "needs_connection": action["needs_connection"],

@@ -29,8 +29,8 @@ ui["title"] = ui["menu"][5]
 ui["requirements"] = {
     "banner": ui["menu"][13],
     "internet": ui["menu"][11],
-    "windows": ui["menu"][8],
-    "linux": ui["menu"][7]
+    "windows": ui["menu"][9],
+    "linux": ui["menu"][10]
 }
 
 ui["dialogs"] = {
@@ -54,15 +54,39 @@ def intro_actions():
     for segment in action_squares:
         height = max(len(segment[0]["description"]), len(segment[1]["description"]))
 
+        more_info = []
+
         for action in segment:
             while len(action["description"]) < height:
                 action["description"].append(27 * " ")
+
+            more_info.append(action["path"])
+            
+            requirements_text = ""
+
+            # TODO: Get better at coding.
+
+            if action["windows"]: requirements_text += "W"
+            if action["linux"]: requirements_text += "L"
+            if action["needs_connection"]: requirements_text += "!"
+
+            requirements_text = formatting.fill_space(requirements_text, 3, reverse=True)
+
+            requirements_text = requirements_text.replace(
+            "W", ui["requirements"]["windows"]).replace(
+            "L", ui["requirements"]["linux"]).replace(
+            "!", ui["requirements"]["internet"])
+
+            # TODO: Get better at coding end.
+
+            more_info.append(requirements_text)
 
         formatted_description = formatting.line_for_line(segment[0]["description"], segment[1]["description"])
 
         print(cticf.inserts(
             ui["action_squares"][height-1],
-            *formatted_description
+            *formatted_description,
+            *more_info
         ))
 
 def intro():
