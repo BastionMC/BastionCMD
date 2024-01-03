@@ -6,6 +6,8 @@ from pathlib import Path
 
 import renput
 
+if os.name == "nt": input = renput.input
+
 file_path = Path(sys.argv[0]).parent.absolute()
 
 ui_files = []
@@ -41,7 +43,9 @@ ui["commands"] = ui["menu"][14]
 ui["needs_update"] = ui["menu"][15]
 
 def intro():
-    print("\n" + ui["title"] + "\n\n" + ui["requirements"]["banner"] + "\n\n" + ui["divider"])
+    print("\n" + ui["title"])
+          
+    print("\n" + ui["requirements"]["banner"] + "\n\n" + ui["divider"])
     
     if server.connection() and server.needs_update()[0]:
         print("\n" + cticf.inserts(ui["needs_update"], server.needs_update()[1]) + "\n\n" + ui["divider"])
