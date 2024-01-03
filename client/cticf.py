@@ -7,7 +7,7 @@ from colorama import *
 
 just_fix_windows_console()
     
-def get_color(color):
+def get_color(color: str):
     ground = color[2]
     match ground:
         case "f": ground = Fore
@@ -33,11 +33,11 @@ def get_color(color):
 
     return color + brightness
 
-def scolor(string):
+def scolor(string: str):
     pattern = r"§§(\w{3})"
     return re.sub(pattern, lambda match: get_color(match.group(1)), string)
 
-def rfile(path):
+def rfile(path: str):
     with open(path, "r", encoding="utf-8") as cticf_f: cticf_c = cticf_f.read(); cticf_f.close()
     cticf_c = cticf_c.split("#\n")[-1]
     cticf_s = cticf_c.split("$§")
@@ -48,7 +48,7 @@ def rfile(path):
         final.append(string)
     return final
         
-def inserts(text, *strings):
+def inserts(text: str, *strings):
     for string in strings:
         text = text.replace("$$", str(string), 1)
     return text
