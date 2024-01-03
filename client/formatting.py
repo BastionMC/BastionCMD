@@ -1,7 +1,12 @@
-def fill_space(string: str, length: int):
+def fill_space(string: str, length: int, reverse: bool = False):
     if len(string) < length:
         remaining_chars = length - len(string)
-        return string + " " * remaining_chars
+
+        if reverse:
+            return " " * remaining_chars + string
+        else:
+            return string + " " * remaining_chars
+        
     else: return string
 
 def cut_off(string: str, length: int):
@@ -30,7 +35,7 @@ def split_up(string: str, length: int):
 
     return lines
 
-def line_for_line(list1: list, list2: list):
+def line_for_line(list1: list[str], list2: list[str]):
     final = []
 
     for i in range(0, len(list1)):
