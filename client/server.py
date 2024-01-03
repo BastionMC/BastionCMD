@@ -11,7 +11,7 @@ def connection():
     except requests.ConnectionError:
         return False
         
-def get_file(file):
+def get_file(file: str):
     req = requests.get(server_url + file)
     if req.status_code == 200:
         return json.loads(req.text)
