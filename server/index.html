@@ -101,6 +101,21 @@
                 filter: hue-rotate(180deg) invert();
                 background-color: black;
             }
+            kbd {
+                padding: 2px;
+                padding-right: 8px;
+                padding-left: 8px;
+                border-radius: 4px;
+                background: linear-gradient(lightgray, gainsboro);
+                position: relative;
+                bottom: 2px;
+                box-shadow: 0px 2px rgb(230, 230, 230);
+                font-size: 12px;
+                color: dimgray;
+            }
+            #api-logo {
+                filter: invert() drop-shadow(white);
+            }
         }
     </style>
 </head>
@@ -201,7 +216,7 @@
 
     <div id="footer">
         <a href="https://github.com/BastionMC/BastionCMD/tree/main/server">
-            <img draggable="false" src="logo.png">
+            <img draggable="false" src="logo.png" id="api-logo">
         </a>
         <p>v1.0 • Licensed under the</p>
         <a href="https://github.com/BastionMC/BastionCMD/blob/main/LICENSE">
