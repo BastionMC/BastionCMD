@@ -40,7 +40,7 @@ try:
     }
 
     ui["dialogs"] = {
-        "in_development": ui["menu"][18], # TODO: Remove once project is complete (DONT FORGET TO UPDATE INDEX)
+        "in_development": ui["menu"][20], # TODO: Remove once project is complete (DONT FORGET TO UPDATE INDEX)
         "no_connection": ui["menu"][4]
     }
 
@@ -58,6 +58,11 @@ try:
     ui["no_actions"] = ui["menu"][17]
 
     ui["prompt"] = ui["menu"][1]
+    ui["input_error"] = {
+        "command": ui["menu"][18],
+        "action": ui["menu"][19]
+    }
+
 except Exception as e:
     if type(e) == IndexError:
         crash_handler.fatal_error(traceback.format_exc(), reason=formatting.split_up("Error Note: There was an IndexError whilst loading the UI. Either a developer forgot to update the index, or a user messed with the files. Was that you?", 64))

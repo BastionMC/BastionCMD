@@ -7,6 +7,7 @@
 
 :: Start the main.py file.
 @echo off
+title BastionCMD
 python main.py
 
 :: Ending loop so the window does not close after the program

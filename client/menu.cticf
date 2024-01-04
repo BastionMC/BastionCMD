@@ -90,21 +90,23 @@ v   not use it multiple times in a file, or else only the
 │                             │  │                             │
 │§§0bf $$ $$ §§0bf│  │§§0bf $$ $$ §§0bf│
 ╰─────────────────────────────╯  ╰─────────────────────────────╯§$ $§
-§§cnfW§$ $§ §§cnfL§$ $§ §§wbf!§$ $§
-§§wdf ...$$ more actions have been abreviated              §§0bf--actions §$ $§
-§§wbf  ! §§wdf= Requires internet                    §§cnfWL §§wdf= §§cnfWindows§§wdf, §§cnfLinux§$ $§
-§§0bf   --settings    --actions    --help    --discord    --github§$ $§
+§§cnfW§$ $§ §§cnfL§$ $§ §§wbf↓§$ $§
+§§wdf ...$$ more actions have been abreviated              §§0bf-§§wbf-a§§0bfctions §$ $§
+§§wbf  ↓ §§wdf= Requires internet                    §§cnfWL §§wdf= §§cnfWindows§§wdf, §§cnfLinux§$ $§
+§§0bf   -§§wbf-s§§0bfettings    -§§wbf-a§§0bfctions    -§§wbf-h§§0bfelp    -§§wbf-d§§0bfiscord    -§§wbf-g§§0bfithub§$ $§
 §§wnf  There is a new BastionCMD version available. Would you like
   to update to BastionCMD v$$?
   
-  §§wbfIgnore this update                                  §§0bf--ignore 
-  §§wbfUpdate BastionCMD                                   §§0bf--update§$ $§
+  §§wbfIgnore this update                                  §§0bf-§§wbf-i§§0bfgnore 
+  §§wbfUpdate BastionCMD                                   §§0bf-§§wbf-u§§0bfpdate§$ $§
 §§rbf╭─────────────────────────────╮  ╭─────────────────────────────╮
 │                             │  │                             │
 │            Error            │  │            Error            │
 │                             │  │                             │
 ╰─────────────────────────────╯  ╰─────────────────────────────╯§$ $§
 §§0bf       Huh, no actions. That's probably not a good thing.       §$ $§
+§§rbf  X §§wbf That's not a valid command.§$ $§
+§§rbf  X §§wbf That's not a valid action.§$ $§
 §§ynf╭─ ! ──────── BastionCMD is still in development ──────────────╮
 │ §§wnfHi! FYI - We are still working on and polishing BastionCMD.  §§ynf│
 │ §§wnfIf you have feature ideas, tell them to us in our Discord!   §§ynf│
