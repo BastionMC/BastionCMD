@@ -19,6 +19,8 @@
         }
         #footer {
             user-select: none;
+            text-align: center;
+            width: 100%;
         }
         #footer > * {
             display: inline;
@@ -95,15 +97,25 @@
             color: gray;
         }
 
-        @media only screen and (max-width: 450px) {
+        @media only screen and (max-width: 600px) {
             #footer {
                 font-size: 12px;
             }
-            
             img {
                 position:relative;
                 top: 12px;
                 height: 32px;
+            }
+            body {
+                padding: 8px;
+                width: initial;
+                margin: 0px;
+                margin-top: 32px;
+                margin-bottom: 32px;
+            }
+            html {           
+                display: initial;
+                justify-content: initial;
             }
         }
 
