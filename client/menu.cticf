@@ -90,15 +90,21 @@ v   not use it multiple times in a file, or else only the
 │                             │  │                             │
 │§§0bf $$ $$ §§0bf│  │§§0bf $$ $$ §§0bf│
 ╰─────────────────────────────╯  ╰─────────────────────────────╯§$ $§
-§§cdfW§$ $§ §§cdfL§$ $§ §§wbf!§$ $§
+§§cnfW§$ $§ §§cnfL§$ $§ §§wbf!§$ $§
 §§wdf ...$$ more actions have been abreviated              §§0bf--actions §$ $§
-§§wbf  ! §§wnf= Requires internet                    §§cdfWL §§wnf= §§cdfWindows§§wnf, §§cdfLinux§$ $§
+§§wbf  ! §§wdf= Requires internet                    §§cnfWL §§wdf= §§cnfWindows§§wdf, §§cnfLinux§$ $§
 §§0bf   --settings    --actions    --help    --discord    --github§$ $§
 §§wnf  There is a new BastionCMD version available. Would you like
   to update to BastionCMD v$$?
   
   §§wbfIgnore this update                                  §§0bf--ignore 
   §§wbfUpdate BastionCMD                                   §§0bf--update§$ $§
+§§rbf╭─────────────────────────────╮  ╭─────────────────────────────╮
+│                             │  │                             │
+│            Error            │  │            Error            │
+│                             │  │                             │
+╰─────────────────────────────╯  ╰─────────────────────────────╯§$ $§
+§§0bf       Huh, no actions. That's probably not a good thing.       §$ $§
 §§ynf╭─ ! ──────── BastionCMD is still in development ──────────────╮
 │ §§wnfHi! FYI - We are still working on and polishing BastionCMD.  §§ynf│
 │ §§wnfIf you have feature ideas, tell them to us in our Discord!   §§ynf│

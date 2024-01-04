@@ -1,5 +1,7 @@
 import requests, json
 
+import traceback, crash_handler
+
 # If you're hosting the API yourself, change this to your server.
 server_url = "https://bastionmc.github.io/api/cmd/"
 version = "1.0"
