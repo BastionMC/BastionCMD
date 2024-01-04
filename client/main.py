@@ -4,9 +4,6 @@ import server, update, actions, formatting
 import os, sys
 from pathlib import Path
 
-import renput
-if os.name == "nt": input = renput.input
-
 file_path = Path(sys.argv[0]).parent.absolute()
 
 ui_files = []
@@ -46,10 +43,15 @@ ui["action_squares"] = [
     ui["menu"][7],
     ui["menu"][6]
 ]
+ui["actions_abreviated"] = ui["menu"][12]
+
+ui["prompt"] = ui["menu"][1]
 
 def intro_actions():
     showcase_actions = actions.showcase_actions()
     action_squares = [showcase_actions[i:i+2] for i in range(0,len(showcase_actions),2)]
+
+    print("")
 
     for segment in action_squares:
         height = max(len(segment[0]["description"]), len(segment[1]["description"]))
@@ -89,6 +91,9 @@ def intro_actions():
             *more_info
         ))
 
+    if len(actions.actions) > 6:
+        print("\n" + cticf.inserts(ui["actions_abreviated"], len(actions.actions) - 6))
+
 def intro():
     print("\n" + ui["title"])
 
@@ -99,9 +104,18 @@ def intro():
     if server.connection() and server.needs_update()[0]:
         print("\n" + cticf.inserts(ui["needs_update"], server.needs_update()[1]) + "\n\n" + ui["divider"])
     
-    print("\n" + ui["commands"] + "\n\n" + ui["divider"])
+    print("\n" + ui["commands"] + "\n\n" + ui["divider"] + "\n")
+
+def input_run():
+    return
+
+def input_main():
+    while True:
+        input(ui["prompt"])
+
 
 if not(server.connection()): print("\n" + ui["dialogs"]["no_connection"])
 print("\n" + ui["dialogs"]["in_development"]) # TODO: Remove once project is complete
 
 intro()
+input_main()
