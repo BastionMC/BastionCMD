@@ -14,8 +14,17 @@
             top: 18px;
             height: 48px;
         }
+        img:hover {
+            top: 16px;
+        }
         a {
             color: dodgerblue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        a:hover:has(img) {
+            text-decoration: none;
         }
         #footer {
             user-select: none;
@@ -96,6 +105,18 @@
             font-size: 12px;
             color: gray;
         }
+        #banner > * > img {
+            top: 0px;
+            height: 128px;
+        }
+        #banner > * > img:hover {
+            top: 0px;
+        }
+        #banner {
+            width: 512px;
+            display: grid;
+            justify-content: center;
+        }
 
         @media only screen and (max-width: 600px) {
             #footer {
@@ -107,15 +128,27 @@
                 height: 32px;
             }
             body {
-                padding: 8px;
+                padding: 16px;
                 width: initial;
                 margin: 0px;
-                margin-top: 32px;
+                margin-top: 16px;
                 margin-bottom: 32px;
             }
             html {           
                 display: initial;
                 justify-content: initial;
+            }
+            #banner {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 510px) {
+            #tutorial-step {
+                width: 12.5%;
+            }
+            #tutorial-instruction {
+                width: 75% !important;
             }
         }
 
@@ -146,10 +179,15 @@
                 background-color: rgb(225, 225, 225);
                 color: dimgray;
             }
+            #banner > * > img {
+                filter: invert();
+            }
         }
     </style>
 </head>
 <body>
+    <div id="banner"><a href="https://github.com/BastionMC/BastionCMD/tree/main/server"><img src="banner.png" draggable="false"></a></div>
+
     <p>Oh, hello! This is the API for <a href="https://www.github.com/BastionMC/BastionCMD">BastionCMD</a>.
     It is used to host files for actions that need to frequently change, without the program needing to download an update.</p>
     <p>This API is, like the <a href="https://github.com/BastionMC/BastionCMD/tree/main/client">client</a>, fully <a href="https://github.com/BastionMC/BastionCMD/tree/main/server">open source</a>! So you can host it yourself, if Bastion doesn't exist anymore.
