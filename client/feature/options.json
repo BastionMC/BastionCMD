@@ -1,0 +1,6 @@
+{
+    "skipped_update": "dev",
+    "in_dev_warning": true,
+    "non_fatal_errors": true,
+    "auto_install": false
+}

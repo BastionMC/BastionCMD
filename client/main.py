@@ -1,5 +1,5 @@
 import cticf
-import server, update, actions, formatting
+import server, update, action, formatting
 
 import os, sys
 from pathlib import Path
@@ -73,7 +73,7 @@ except Exception as e:
 
 def intro_actions():
     try:
-        showcase_actions = actions.showcase_actions()
+        showcase_actions = action.showcase_actions()
     except Exception as e:
         crash_handler.fatal_error(traceback.format_exc())
 
@@ -90,19 +90,19 @@ def intro_actions():
 
             more_info = []
 
-            for action in segment:
-                while len(action["description"]) < height:
-                    action["description"].append(27 * " ")
+            for action_box in segment:
+                while len(action_box["description"]) < height:
+                    action_box["description"].append(27 * " ")
 
-                more_info.append(action["path"])
+                more_info.append(action_box["path"])
                 
                 requirements_text = ""
 
                 # TODO: Get better at coding.
 
-                if action["windows"]: requirements_text += "W"
-                if action["linux"]: requirements_text += "L"
-                if action["needs_connection"]: requirements_text += "!"
+                if action_box["windows"]: requirements_text += "W"
+                if action_box["linux"]: requirements_text += "L"
+                if action_box["needs_connection"]: requirements_text += "!"
 
                 requirements_text = formatting.fill_space(requirements_text, 3, reverse=True)
 
@@ -131,13 +131,15 @@ def intro_actions():
             crash_handler.error(traceback.format_exc())
 
     if failed_to_load:
-        crash_handler.error(failed_to_load_error, reason=formatting.split_up("Error Note: Seems like there was an IndexError. This is probably because there aren't enough actions. (An amount of 2, 4, or 6 is required for the client to run flawlessly. 1, 3, or 5 won't work.) Don't worry, the client can still run, you'll just be seeing this error every time. You can disable non-fatal errors in the settings.", 64))
+        crash_handler.error(failed_to_load_error, reason=formatting.split_up("Error Note: Seems like there was an IndexError. This is probably because there aren't enough action. (An amount of 2, 4, or 6 is required for the client to run flawlessly. 1, 3, or 5 won't work.) Don't worry, the client can still run, you'll just be seeing this error every time. You can disable non-fatal errors in the settings.", 64))
 
-    if len(actions.actions) > 6:
-        print("\n" + cticf.inserts(ui["actions_abreviated"], len(actions.actions) - 6))
+    if len(action.actions) > 6:
+        print("\n" + cticf.inserts(ui["actions_abreviated"], len(action.actions) - 6))
 
-    if len(actions.actions) == 0:
+    if len(action.actions) == 0:
         print(ui["no_actions"])
+
+needs_update = False
 
 def intro():
     print("\n" + ui["title"])
@@ -146,18 +148,61 @@ def intro():
 
     print("\n" + ui["requirements"]["banner"] + "\n\n" + ui["divider"])
     
-    if server.connection() and server.needs_update()[0]:
+    if needs_update:
         print("\n" + cticf.inserts(ui["needs_update"], server.needs_update()[1]) + "\n\n" + ui["divider"])
     
     print("\n" + ui["commands"] + "\n\n" + ui["divider"] + "\n")
 
-def input_run():
+input_actions = []
+input_commands = [
+    "--settings",
+    "--actions",
+    "--help",
+    "--discord",
+    "--github"
+]
+input_commands_short = [
+    "-s",
+    "-a",
+    "-h",
+    "-d",
+    "-g"
+]
+
+for input_action in action.actions:
+    input_actions.append(input_action["path"])
+
+def input_run(type: str = "action", input_string: str = ""):
     return
 
 def input_main():
     while True:
-        input(ui["prompt"])
+        user_input = input(ui["prompt"])
 
+        if user_input.startswith("-"):
+            
+            if user_input.startswith("--") and user_input in input_commands:
+                input_run(type = "command", input_string = user_input)
+            elif user_input in input_commands_short:
+                for command in input_commands:
+                    if user_input in command:
+                        input_run(type = "command", input_string = command)
+            else:
+                print(ui["input_error"]["command"])
+        elif user_input in input_actions:
+            input_run(type = "action")
+        elif user_input == "cls":
+            if os.name == "nt":
+                os.system("cls")
+            else:
+                os.system("clear")
+        else:
+            print(ui["input_error"]["action"])
+
+if server.connection() and server.needs_update()[0]:
+    needs_update = True
+    input_commands.extend(["--ignore", "--update"])
+    input_commands_short.extend(["-i", "-u"])
 
 if not(server.connection()): print("\n" + ui["dialogs"]["no_connection"])
 print("\n" + ui["dialogs"]["in_development"]) # TODO: Remove once project is complete
