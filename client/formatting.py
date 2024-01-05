@@ -1,3 +1,5 @@
+import os
+
 def fill_space(string: str, length: int, reverse: bool = False):
     if len(string) < length:
         remaining_chars = length - len(string)
@@ -43,3 +45,9 @@ def line_for_line(list1: list[str], list2: list[str]):
         final.append(list2[i])
 
     return final
+
+def clear_screen():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")

@@ -4,6 +4,15 @@ import server, action, formatting
 import os, sys
 from pathlib import Path
 
+import feature.settings
+import feature.actions
+import feature.help
+import feature.discord
+import feature.github
+
+import feature.ignore
+import feature.update
+
 import traceback, crash_handler
 
 file_path = Path(sys.argv[0]).parent.absolute()
@@ -15,6 +24,8 @@ ui_file_names = [ # If you added a new .cticf file, add it's name here
 ]
 ui = {}
 
+needs_update = [False, None]
+update_version = None
 
 try:
     for file in os.listdir(file_path):
@@ -134,15 +145,13 @@ def intro_actions():
             crash_handler.error(traceback.format_exc())
 
     if failed_to_load:
-        crash_handler.error(failed_to_load_error, reason=formatting.split_up("Error Note: Seems like there was an IndexError. This is probably because there aren't enough action. (An amount of 2, 4, or 6 is required for the client to run flawlessly. 1, 3, or 5 won't work.) Don't worry, the client can still run, you'll just be seeing this error every time. You can disable non-fatal errors in the settings.", 64))
+        crash_handler.error(failed_to_load_error, reason=formatting.split_up("Error Note: Seems like there was an IndexError. This is probably because there aren't enough actions. (An amount of 2, 4, or 6 is required for the client to run flawlessly. 1, 3, or 5 won't work.) Don't worry, the client can still run, you'll just be seeing this error every time. You can disable non-fatal errors in the settings.", 64))
 
     if len(action.actions) > 6:
         print("\n" + cticf.inserts(ui["actions_abreviated"], len(action.actions) - 6))
 
     if len(action.actions) == 0:
         print(ui["no_actions"])
-
-needs_update = False
 
 def intro():
     print("\n" + ui["title"])
@@ -151,49 +160,40 @@ def intro():
 
     print("\n" + ui["requirements"]["banner"] + "\n\n" + ui["divider"])
     
-    if needs_update:
-        print("\n" + cticf.inserts(ui["needs_update"], server.needs_update()[1]) + "\n\n" + ui["divider"])
+    if needs_update[0]:
+        print("\n" + cticf.inserts(ui["needs_update"], needs_update[1]) + "\n\n" + ui["divider"])
     
     print("\n" + ui["commands"] + "\n\n" + ui["divider"] + "\n")
 
 input_actions = []
-input_commands = [
-    "--settings",
-    "--actions",
-    "--help",
-    "--discord",
-    "--github"
-]
-input_commands_short = [
-    "-s",
-    "-a",
-    "-h",
-    "-d",
-    "-g"
-]
+input_commands = {
+    "--settings": feature.settings.run,
+    "--actions": feature.actions.run,
+    "--help": feature.help.run,
+    "--discord": feature.discord.run,
+    "--github": feature.github.run
+}
+input_commands_short = {
+    "-s": "--settings",
+    "-a": "--actions",
+    "-h": "--help",
+    "-d": "--discord",
+    "-g": "--github"
+}
 
-for input_action in action.actions:
-    input_actions.append(input_action["path"])
-
-def clear_screen():
-    if os.name == "nt":
-        os.system("cls")
-    else:
-        os.system("clear")
-
-def input_run(type: str = "action", input_string: str = ""):
+def input_run(type: str="action", input_string: str=""):
     print("valid", input_string)
-
-def long_command_from_short(user_input):
-    for command in input_commands:
-        if user_input in command:
-            input_run(type = "command", input_string = command.replace("-", ""))
+    match type:
+        case "action":
+            action.run_action(input_string)
+        case "command":
+            input_commands[input_string]()
 
 def input_command(user_input):
-    if user_input.startswith("--") and user_input in input_commands:
-        input_run(type = "command", input_string = user_input.replace("-", ""))
+    if user_input in input_commands:
+        input_run(type="command", input_string=user_input)
     elif user_input in input_commands_short:
-        long_command_from_short(user_input)
+        input_run(type="command", input_string=input_commands_short[user_input])
     else:
         print(ui["input_error"]["command"])
 
@@ -204,19 +204,32 @@ def input_main():
         if user_input.startswith("-"):
             input_command(user_input)
         elif user_input in input_actions:
-            input_run(type = "action")
-        elif user_input == "cls":
-            clear_screen()
+            input_run(type="action", input_string=user_input)
+        elif user_input in ["cls", "clear"]:
+            formatting.clear_screen()
         else:
             print(ui["input_error"]["action"])
 
-if server.connection() and server.needs_update()[0]:
-    needs_update = True
-    input_commands.extend(["--ignore", "--update"])
-    input_commands_short.extend(["-i", "-u"])
 
-if not(server.connection()): print("\n" + ui["dialogs"]["no_connection"])
+for input_action in action.actions:
+    input_actions.append(input_action["path"])
+
+needs_update = server.needs_update()
+has_connection = server.connection()
+
+if has_connection and needs_update[0]:
+    input_commands["--ignore"] = feature.ignore.run
+    input_commands["--update"] = feature.update.run
+    input_commands_short["-i"] = "--ignore"
+    input_commands_short["-u"] = "--update"
+    update_version = needs_update[1]
+elif not(has_connection):
+    print("\n" + ui["dialogs"]["no_connection"])
+
 print("\n" + ui["dialogs"]["in_development"]) # TODO: Remove once project is complete
 
-intro()
-input_main()
+try:
+    intro()
+    input_main()
+except Exception as e:
+    crash_handler.fatal_error(traceback.format_exc())

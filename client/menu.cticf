@@ -50,7 +50,7 @@ v   not use it multiple times in a file, or else only the
 
 #
 §§0bf ────────────────────────────────────────────────────────────── §$ $§
-§§wdf  > §§wbf $§
+§§0bf  > §§wbf $§
 §§rbf╭─ X ──────────────────────────────────────────────────────────╮
 │ §§wnfUh oh - looks like something went wrong. Here's some error   §§rbf│
 │ §§wnfinfo, which will (hopefully) help you troubleshoot/report    §§rbf│
