@@ -1,5 +1,5 @@
 import cticf
-import server, update, action, formatting
+import server, action, formatting
 
 import os, sys
 from pathlib import Path
@@ -173,22 +173,24 @@ for input_action in action.actions:
     input_actions.append(input_action["path"])
 
 def input_run(type: str = "action", input_string: str = ""):
-    return
+    print("valid", input_string)
+
+def input_command(user_input):
+    if user_input.startswith("--") and user_input in input_commands:
+        input_run(type = "command", input_string = user_input.replace("-", ""))
+    elif user_input in input_commands_short:
+        for command in input_commands:
+            if user_input in command:
+                input_run(type = "command", input_string = command.replace("-", ""))
+    else:
+        print(ui["input_error"]["command"])
 
 def input_main():
     while True:
         user_input = input(ui["prompt"])
 
         if user_input.startswith("-"):
-            
-            if user_input.startswith("--") and user_input in input_commands:
-                input_run(type = "command", input_string = user_input)
-            elif user_input in input_commands_short:
-                for command in input_commands:
-                    if user_input in command:
-                        input_run(type = "command", input_string = command)
-            else:
-                print(ui["input_error"]["command"])
+            input_command(user_input)
         elif user_input in input_actions:
             input_run(type = "action")
         elif user_input == "cls":
