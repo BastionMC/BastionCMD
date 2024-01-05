@@ -184,13 +184,16 @@ def clear_screen():
 def input_run(type: str = "action", input_string: str = ""):
     print("valid", input_string)
 
+def long_command_from_short(user_input):
+    for command in input_commands:
+        if user_input in command:
+            input_run(type = "command", input_string = command.replace("-", ""))
+
 def input_command(user_input):
     if user_input.startswith("--") and user_input in input_commands:
         input_run(type = "command", input_string = user_input.replace("-", ""))
     elif user_input in input_commands_short:
-        for command in input_commands:
-            if user_input in command:
-                input_run(type = "command", input_string = command.replace("-", ""))
+        long_command_from_short(user_input)
     else:
         print(ui["input_error"]["command"])
 
