@@ -50,7 +50,7 @@ try:
             ui_files.append(os.path.join(file_path, file))
 
     for ui_file_name in ui_file_names:
-        if ui_file_name + ".cticf" in ui_files:
+        if os.path.join(file_path, ui_file_name + ".cticf") in ui_files:
             ui[ui_file_name] = cticf.rfile(ui_file_name + ".cticf")
 
     ui["divider"] = ui["menu"][0]
