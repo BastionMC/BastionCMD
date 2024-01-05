@@ -19,10 +19,11 @@ file_path = Path(sys.argv[0]).parent.absolute()
 
 ui_files = []
 ui_file_names = [ # If you added a new .cticf file, add it's name here
-    "menu",
-    "settings"
+    "menu"
 ]
 ui = {}
+
+action_amount = len(action.actions)
 
 needs_update = [False, None]
 update_version = None
@@ -51,7 +52,7 @@ try:
     }
 
     ui["dialogs"] = {
-        "in_development": ui["menu"][20], # TODO: Remove once project is complete (DONT FORGET TO UPDATE INDEX)
+        "in_development": ui["menu"][21], # TODO: Remove once project is complete (DONT FORGET TO UPDATE INDEX)
         "no_connection": ui["menu"][4]
     }
 
@@ -64,6 +65,7 @@ try:
         ui["menu"][6]
     ]
     ui["actions_abreviated"] = ui["menu"][12]
+    ui["action_abreviated"] = ui["menu"][20]
 
     ui["action_segment_error"] = ui["menu"][16]
     ui["no_actions"] = ui["menu"][17]
@@ -93,24 +95,16 @@ def action_square_segment(segment):
 
         more_info.append(action_box["path"])
         
-        requirements_text = ""
+        text = ""
 
-        # TODO: Get better at coding.
+        if action_box["windows"]: text += ui["requirements"]["windows"]
+        if action_box["linux"]: text += ui["requirements"]["linux"]
+        if action_box["needs_connection"]: text += ui["requirements"]["internet"]
 
-        if action_box["windows"]: requirements_text += "W"
-        if action_box["linux"]: requirements_text += "L"
-        if action_box["needs_connection"]: requirements_text += "!"
+        characters = text.count("W") + text.count("L") + text.count("↓")
+        text = (" "*(3 - characters)) + text
 
-        requirements_text = formatting.fill_space(requirements_text, 3, reverse=True)
-
-        requirements_text = requirements_text.replace(
-        "W", ui["requirements"]["windows"]).replace(
-        "L", ui["requirements"]["linux"]).replace(
-        "!", ui["requirements"]["internet"])
-
-        # TODO: Get better at coding end.
-
-        more_info.append(requirements_text)
+        more_info.append(text)
 
     formatted_description = formatting.line_for_line(segment[0]["description"], segment[1]["description"])
 
@@ -121,14 +115,14 @@ def action_square_segment(segment):
     ))
 
 def intro_actions():
-    try:
-        showcase_actions = action.showcase_actions()
+    print("")
+
+    try: showcase_actions = action.showcase_actions()
     except Exception as e:
         crash_handler.fatal_error(traceback.format_exc())
 
+    # Splits actions up into pairs of two.
     action_squares = [showcase_actions[i:i+2] for i in range(0,len(showcase_actions),2)]
-
-    print("")
 
     failed_to_load = False
     failed_to_load_error = ""
@@ -147,10 +141,11 @@ def intro_actions():
     if failed_to_load:
         crash_handler.error(failed_to_load_error, reason=formatting.split_up("Error Note: Seems like there was an IndexError. This is probably because there aren't enough actions. (An amount of 2, 4, or 6 is required for the client to run flawlessly. 1, 3, or 5 won't work.) Don't worry, the client can still run, you'll just be seeing this error every time. You can disable non-fatal errors in the settings.", 64))
 
-    if len(action.actions) > 6:
-        print("\n" + cticf.inserts(ui["actions_abreviated"], len(action.actions) - 6))
-
-    if len(action.actions) == 0:
+    if action_amount == 7:
+        print("\n" + cticf.inserts(ui["action_abreviated"], 1))
+    elif action_amount > 6:
+        print("\n" + cticf.inserts(ui["actions_abreviated"], action_amount - 6))
+    elif action_amount == 0:
         print(ui["no_actions"])
 
 def intro():
