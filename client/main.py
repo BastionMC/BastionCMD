@@ -71,6 +71,44 @@ except Exception as e:
     else:
         crash_handler.fatal_error(traceback.format_exc())
 
+def action_square_segment(segment):
+    height = max(len(segment[0]["description"]), len(segment[1]["description"]))
+
+    more_info = []
+
+    for action_box in segment:
+        while len(action_box["description"]) < height:
+            action_box["description"].append(27 * " ")
+
+        more_info.append(action_box["path"])
+        
+        requirements_text = ""
+
+        # TODO: Get better at coding.
+
+        if action_box["windows"]: requirements_text += "W"
+        if action_box["linux"]: requirements_text += "L"
+        if action_box["needs_connection"]: requirements_text += "!"
+
+        requirements_text = formatting.fill_space(requirements_text, 3, reverse=True)
+
+        requirements_text = requirements_text.replace(
+        "W", ui["requirements"]["windows"]).replace(
+        "L", ui["requirements"]["linux"]).replace(
+        "!", ui["requirements"]["internet"])
+
+        # TODO: Get better at coding end.
+
+        more_info.append(requirements_text)
+
+    formatted_description = formatting.line_for_line(segment[0]["description"], segment[1]["description"])
+
+    print(cticf.inserts(
+        ui["action_squares"][height-1],
+        *formatted_description,
+        *more_info
+    ))
+
 def intro_actions():
     try:
         showcase_actions = action.showcase_actions()
@@ -86,42 +124,7 @@ def intro_actions():
 
     try:
         for segment in action_squares:
-            height = max(len(segment[0]["description"]), len(segment[1]["description"]))
-
-            more_info = []
-
-            for action_box in segment:
-                while len(action_box["description"]) < height:
-                    action_box["description"].append(27 * " ")
-
-                more_info.append(action_box["path"])
-                
-                requirements_text = ""
-
-                # TODO: Get better at coding.
-
-                if action_box["windows"]: requirements_text += "W"
-                if action_box["linux"]: requirements_text += "L"
-                if action_box["needs_connection"]: requirements_text += "!"
-
-                requirements_text = formatting.fill_space(requirements_text, 3, reverse=True)
-
-                requirements_text = requirements_text.replace(
-                "W", ui["requirements"]["windows"]).replace(
-                "L", ui["requirements"]["linux"]).replace(
-                "!", ui["requirements"]["internet"])
-
-                # TODO: Get better at coding end.
-
-                more_info.append(requirements_text)
-
-            formatted_description = formatting.line_for_line(segment[0]["description"], segment[1]["description"])
-
-            print(cticf.inserts(
-                ui["action_squares"][height-1],
-                *formatted_description,
-                *more_info
-            ))
+            action_square_segment(segment)
     except Exception as e:
         if type(e) == IndexError:
             failed_to_load = True
@@ -172,6 +175,12 @@ input_commands_short = [
 for input_action in action.actions:
     input_actions.append(input_action["path"])
 
+def clear_screen():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+
 def input_run(type: str = "action", input_string: str = ""):
     print("valid", input_string)
 
@@ -194,10 +203,7 @@ def input_main():
         elif user_input in input_actions:
             input_run(type = "action")
         elif user_input == "cls":
-            if os.name == "nt":
-                os.system("cls")
-            else:
-                os.system("clear")
+            clear_screen()
         else:
             print(ui["input_error"]["action"])
 
