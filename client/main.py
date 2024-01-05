@@ -18,25 +18,21 @@ import traceback, crash_handler
 file_path = Path(sys.argv[0]).parent.absolute()
 
 ui_files = []
-ui_file_names = [ # If you added a new .cticf file, add it's name here
+ui_files, ui_file_names, ui = [], [ # If you added a new .cticf file, add it's name here
     "menu"
-]
-ui = {}
+], {}
 
 action_amount = len(action.actions)
 
-needs_update = [False, None]
-update_version = None
+needs_update, update_version = [False, None], None
 
-input_actions = []
-input_commands = {
+input_actions, input_commands, input_commands_short = [], {
     "--settings": feature.settings.run,
     "--actions": feature.actions.run,
     "--help": feature.help.run,
     "--discord": feature.discord.run,
     "--github": feature.github.run
-}
-input_commands_short = {
+}, {
     "-s": "--settings",
     "-a": "--actions",
     "-h": "--help",
@@ -139,16 +135,14 @@ def intro_actions():
     # Splits actions up into pairs of two.
     action_squares = [showcase_actions[i:i+2] for i in range(0,len(showcase_actions),2)]
 
-    failed_to_load = False
-    failed_to_load_error = ""
+    failed_to_load, failed_to_load_error = False, ""
 
     try:
         for segment in action_squares:
             action_square_segment(segment)
     except Exception as e:
         if type(e) == IndexError:
-            failed_to_load = True
-            failed_to_load_error = traceback.format_exc()
+            failed_to_load, failed_to_load_error = True, traceback.format_exc()
             print(ui["action_segment_error"])
         else:
             crash_handler.error(traceback.format_exc())
