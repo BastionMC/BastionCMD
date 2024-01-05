@@ -4,6 +4,10 @@ import traceback, crash_handler
 
 # If you're hosting the API yourself, change this to your server.
 server_url = "https://bastionmc.github.io/api/cmd/"
+# Use "dev" for development, as dev versions will always say
+# they need an update. The "update" command refuses to replace
+# a version of BastionCMD that is labled as "dev", however the
+# rest of the command still works as normal.
 version = "dev"
 
 def connection():
@@ -24,11 +28,8 @@ def get_version():
     return get_file("version.json")
 
 def needs_update():
-    global version
-
     version_json = get_version()
-    if version in version_json["valid"]:
-        if not(version == version_json["latest"]):
-            return [True, version_json["latest"]]
-        else: return [False, version_json["latest"]]
-    else: return [False, version_json["latest"]]
+    if version in version_json["valid"] and not(version == version_json["latest"]):
+        return [True, version_json["latest"]]
+    else:
+        return [False, version_json["latest"]]

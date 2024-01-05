@@ -28,14 +28,30 @@ action_amount = len(action.actions)
 needs_update = [False, None]
 update_version = None
 
+input_actions = []
+input_commands = {
+    "--settings": feature.settings.run,
+    "--actions": feature.actions.run,
+    "--help": feature.help.run,
+    "--discord": feature.discord.run,
+    "--github": feature.github.run
+}
+input_commands_short = {
+    "-s": "--settings",
+    "-a": "--actions",
+    "-h": "--help",
+    "-d": "--discord",
+    "-g": "--github"
+}
+
 try:
     for file in os.listdir(file_path):
         if file.endswith(".cticf"):
             ui_files.append(os.path.join(file_path, file))
 
-    for ui_file in ui_files:
-        for ui_file_name in ui_file_names:
-            if ui_file_name in ui_file: ui[ui_file_name] = cticf.rfile(ui_file)
+    for ui_file_name in ui_file_names:
+        if ui_file_name + ".cticf" in ui_files:
+            ui[ui_file_name] = cticf.rfile(ui_file_name + ".cticf")
 
     ui["divider"] = ui["menu"][0]
     ui["title"] = ui["menu"][5]
@@ -75,7 +91,6 @@ try:
         "command": ui["menu"][18],
         "action": ui["menu"][19]
     }
-
 except Exception as e:
     if type(e) == IndexError:
         crash_handler.fatal_error(traceback.format_exc(), reason=formatting.split_up("Error Note: There was an IndexError whilst loading the UI. Either a developer forgot to update the index, or a user messed with the files. Was that you?", 64))
@@ -159,22 +174,6 @@ def intro():
         print("\n" + cticf.inserts(ui["needs_update"], needs_update[1]) + "\n\n" + ui["divider"])
     
     print("\n" + ui["commands"] + "\n\n" + ui["divider"] + "\n")
-
-input_actions = []
-input_commands = {
-    "--settings": feature.settings.run,
-    "--actions": feature.actions.run,
-    "--help": feature.help.run,
-    "--discord": feature.discord.run,
-    "--github": feature.github.run
-}
-input_commands_short = {
-    "-s": "--settings",
-    "-a": "--actions",
-    "-h": "--help",
-    "-d": "--discord",
-    "-g": "--github"
-}
 
 def input_run(type: str="action", input_string: str=""):
     print("valid", input_string)
