@@ -37,43 +37,40 @@ try:
         if os.path.join(file_path, ui_file_name + ".cticf") in ui_files:
             ui[ui_file_name] = cticf.rfile(ui_file_name + ".cticf")
 
-    ui["divider"] = ui["menu"][0]
-    ui["title"] = ui["menu"][5]
-    ui["requirements"] = {
-        "banner": ui["menu"][13],
-        "internet": ui["menu"][11],
-        "windows": ui["menu"][9],
-        "linux": ui["menu"][10]
-    }
+    ui = {
+        "divider": ui["menu"][0],
+        "title": ui["menu"][5],
 
-    ui["errors"] = {
-        "normal": ui["menu"][2],
-        "fatal": ui["menu"][3]
-    }
+        "requirements": {
+            "banner": ui["menu"][13],
+            "internet": ui["menu"][11],
+            "windows": ui["menu"][9],
+            "linux": ui["menu"][10]
+        },
 
-    ui["dialogs"] = {
-        "in_development": ui["menu"][21], # TODO: Remove once project is complete (DONT FORGET TO UPDATE INDEX)
-        "no_connection": ui["menu"][4]
-    }
+        "dialogs": {
+            "in_development": ui["menu"][21], # TODO: Remove once project is complete (DONT FORGET TO UPDATE INDEX)
+            "no_connection": ui["menu"][4]
+        },
 
-    ui["commands"] = ui["menu"][14]
-    ui["needs_update"] = ui["menu"][15]
+        "commands": ui["menu"][14],
+        "needs_update": ui["menu"][15],
 
-    ui["action_squares"] = [
-        ui["menu"][8],
-        ui["menu"][7],
-        ui["menu"][6]
-    ]
-    ui["actions_abreviated"] = ui["menu"][12]
-    ui["action_abreviated"] = ui["menu"][20]
+        "action_squares": [
+            ui["menu"][8],
+            ui["menu"][7],
+            ui["menu"][6]
+        ],
+        "actions_abreviated": ui["menu"][12],
+        "action_abreviated": ui["menu"][20],
+        "action_segment_error": ui["menu"][16],
+        "no_actions": ui["menu"][17],
 
-    ui["action_segment_error"] = ui["menu"][16]
-    ui["no_actions"] = ui["menu"][17]
-
-    ui["prompt"] = ui["menu"][1]
-    ui["input_error"] = {
-        "command": ui["menu"][18],
-        "action": ui["menu"][19]
+        "prompt": ui["menu"][1],
+        "input_error": {
+            "command": ui["menu"][18],
+            "action": ui["menu"][19]
+        }
     }
 except Exception as e:
     if type(e) == IndexError:
@@ -195,10 +192,8 @@ with requests.Session() as session:
     needs_update, has_connection = server.needs_update(), server.connection()
 
 if has_connection and needs_update[0]:
-    input_commands["--ignore"] = feature.ignore.run
-    input_commands["--update"] = feature.update.run
-    input_commands_short["-i"] = "--ignore"
-    input_commands_short["-u"] = "--update"
+    input_commands["--ignore"], input_commands["--update"] = feature.ignore.run, feature.update.run
+    input_commands_short["-i"], input_commands_short["-u"] = "--ignore", "--update"
     update_version = needs_update[1]
 elif not(has_connection):
     print("\n" + ui["dialogs"]["no_connection"])
