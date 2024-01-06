@@ -1,19 +1,7 @@
-import cticf
-import server, action, formatting
-
-import os, sys
+import cticf, server, action, formatting
+import os, sys, requests, traceback, crash_handler
 from pathlib import Path
-
-import feature.settings
-import feature.actions
-import feature.help
-import feature.discord
-import feature.github
-
-import feature.ignore
-import feature.update
-
-import traceback, crash_handler
+import feature.settings, feature.actions, feature.help, feature.discord, feature.github, feature.ignore, feature.update
 
 file_path = Path(sys.argv[0]).parent.absolute()
 

@@ -1,7 +1,6 @@
 from pathlib import Path
-import os, sys, json
-import formatting
 from importlib import import_module
+import os, sys, json, formatting
 
 import traceback, crash_handler
 
