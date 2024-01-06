@@ -190,8 +190,9 @@ def input_main():
 for input_action in action.actions:
     input_actions.append(input_action["path"])
 
-needs_update = server.needs_update()
-has_connection = server.connection()
+
+with requests.Session() as session:
+    needs_update, has_connection = server.needs_update(), server.connection()
 
 if has_connection and needs_update[0]:
     input_commands["--ignore"] = feature.ignore.run
