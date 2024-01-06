@@ -6,30 +6,28 @@ import re
 from colorama import *
 
 just_fix_windows_console()
-    
+
 def get_color(color: str):
-    ground = color[2]
-    match ground:
-        case "f": ground = Fore
-        case "b": ground = Back
-        case _: ground = Fore
-    brightness = color[1]
-    match brightness:
-        case "d": brightness = Style.DIM
-        case "n": brightness = Style.NORMAL
-        case "b": brightness = Style.BRIGHT
-        case _: brightness = Style.NORMAL
-    color = color[0]
-    match color:
-        case "r": color = ground.RED
-        case "g": color = ground.GREEN
-        case "y": color = ground.YELLOW
-        case "b": color = ground.BLUE
-        case "m": color = ground.MAGENTA
-        case "c": color = ground.CYAN
-        case "w": color = ground.WHITE
-        case "0": color = ground.BLACK
-        case _: color = ground.WHITE
+    ground, brightness = {
+        "f": Fore,
+        "b": Back
+    }, {
+        "d": Style.DIM,
+        "n": Style.NORMAL,
+        "b": Style.BRIGHT
+    }
+    ground, brightness = ground[color[2]], brightness[color[1]]
+    colors = {
+        "r": ground.RED,
+        "g": ground.GREEN,
+        "y": ground.YELLOW,
+        "b": ground.BLUE,
+        "m": ground.MAGENTA,
+        "c": ground.CYAN,
+        "w": ground.WHITE,
+        "0": ground.BLACK
+    }
+    color = colors[color[0]]
 
     return color + brightness
 

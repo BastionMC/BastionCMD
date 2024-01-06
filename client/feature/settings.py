@@ -1,2 +1,2 @@
 def run():
-    return
+    print("insert settings here")

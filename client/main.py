@@ -1,18 +1,13 @@
-import cticf, server, action, formatting
-import os, sys, requests, traceback, crash_handler
+import cticf, server, action, formatting, os, sys, requests, traceback, crash_handler
 from pathlib import Path
 import feature.settings, feature.actions, feature.help, feature.discord, feature.github, feature.ignore, feature.update
 
 file_path = Path(sys.argv[0]).parent.absolute()
-
-ui_files = []
-ui_files, ui_file_names, ui = [], [ # If you added a new .cticf file, add it's name here
-    "menu"
-], {}
-
 action_amount = len(action.actions)
-
 needs_update, update_version = [False, None], None
+
+with requests.Session() as session:
+    needs_update, has_connection = server.needs_update(), server.connection()
 
 input_actions, input_commands, input_commands_short = [], {
     "--settings": feature.settings.run,
@@ -29,47 +24,41 @@ input_actions, input_commands, input_commands_short = [], {
 }
 
 try:
-    for file in os.listdir(file_path):
-        if file.endswith(".cticf"):
-            ui_files.append(os.path.join(file_path, file))
-
-    for ui_file_name in ui_file_names:
-        if os.path.join(file_path, ui_file_name + ".cticf") in ui_files:
-            ui[ui_file_name] = cticf.rfile(ui_file_name + ".cticf")
+    ui = cticf.rfile(os.path.join(file_path, "menu.cticf"))
 
     ui = {
-        "divider": ui["menu"][0],
-        "title": ui["menu"][5],
+        "divider": ui[0],
+        "title": ui[5],
 
         "requirements": {
-            "banner": ui["menu"][13],
-            "internet": ui["menu"][11],
-            "windows": ui["menu"][9],
-            "linux": ui["menu"][10]
+            "banner": ui[13],
+            "internet": ui[11],
+            "windows": ui[9],
+            "linux": ui[10]
         },
 
         "dialogs": {
-            "in_development": ui["menu"][21], # TODO: Remove once project is complete (DONT FORGET TO UPDATE INDEX)
-            "no_connection": ui["menu"][4]
+            "in_development": ui[21], # TODO: Remove once project is complete (DONT FORGET TO UPDATE INDEX)
+            "no_connection": ui[4]
         },
 
-        "commands": ui["menu"][14],
-        "needs_update": ui["menu"][15],
+        "commands": ui[14],
+        "needs_update": ui[15],
 
         "action_squares": [
-            ui["menu"][8],
-            ui["menu"][7],
-            ui["menu"][6]
+            ui[8],
+            ui[7],
+            ui[6]
         ],
-        "actions_abreviated": ui["menu"][12],
-        "action_abreviated": ui["menu"][20],
-        "action_segment_error": ui["menu"][16],
-        "no_actions": ui["menu"][17],
+        "actions_abreviated": ui[12],
+        "action_abreviated": ui[20],
+        "action_segment_error": ui[16],
+        "no_actions": ui[17],
 
-        "prompt": ui["menu"][1],
+        "prompt": ui[1],
         "input_error": {
-            "command": ui["menu"][18],
-            "action": ui["menu"][19]
+            "command": ui[18],
+            "action": ui[19]
         }
     }
 except Exception as e:
@@ -186,10 +175,6 @@ def input_main():
 
 for input_action in action.actions:
     input_actions.append(input_action["path"])
-
-
-with requests.Session() as session:
-    needs_update, has_connection = server.needs_update(), server.connection()
 
 if has_connection and needs_update[0]:
     input_commands["--ignore"], input_commands["--update"] = feature.ignore.run, feature.update.run

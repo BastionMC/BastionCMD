@@ -1,6 +1,4 @@
-import requests, json
-
-import traceback, crash_handler
+import requests, json, traceback, crash_handler
 
 # If you're hosting the API yourself, change this to your server.
 server_url = "https://bastionmc.github.io/api/cmd/"
@@ -12,7 +10,7 @@ version = "dev"
 
 def connection():
     try:
-        requests.get(server_url, timeout=5)
+        requests.get(server_url + "connection.txt", timeout=5)
         return True
     except requests.ConnectionError:
         return False
