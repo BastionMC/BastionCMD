@@ -1,14 +1,1 @@
-{
-    "mcwebgui": {
-        "release": "https://www.github.com/BastionMC/MCWebGUI/releases"
-    },
-    "mcpygui": {
-        "release": "https://www.github.com/BastionMC/MCPyGUI/releases"
-    },
-    "quartz-server": {
-        "release": "https://www.github.com/BastionMC/QuartzServer/releases"
-    },
-    "quartz-dashboard": {
-        "release": "https://www.github.com/BastionMC/QuartzDashboard/releases"
-    }
-}
+{"mcwebgui":{"release":"https://www.github.com/BastionMC/MCWebGUI/releases"},"mcpygui":{"release":"https://www.github.com/BastionMC/MCPyGUI/releases"},"quartz-server":{"release":"https://www.github.com/BastionMC/QuartzServer/releases"},"quartz-dashboard":{"release":"https://www.github.com/BastionMC/QuartzDashboard/releases"}}
