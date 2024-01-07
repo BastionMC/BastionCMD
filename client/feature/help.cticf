@@ -1,0 +1,20 @@
+§§0bf ──────────────────────────── §§ybfHelp §§0bf────────────────────────────
+ 
+  §§0bf-§§wbf-a§§0bfctions     §§wnfShows a list of possible actions.
+  §§0bf-§§wbf-h§§0bfelp        §§wnfShows you this help page. Hi!
+  §§0bf-§§wbf-s§§0bfettings    §§wnfOpens the settings page.
+  §§0bf-§§wbf-d§§0bfiscord     §§wnfOpens an invite link to our Discord server.
+  §§0bf-§§wbf-g§§0bfithub      §§wnfOpens link to BastionCMD's GitHub repository.
+  
+  §§wbfSettings-only commands:
+  
+  §§0bf-§§wbf-s§§0bfave        §§wnfSaves settings and returns to action prompt.
+  §§0bf-§§wbf-r§§0bfeset       §§wnfResets your settings, ignored update included.
+  
+  §§wbfUpdate-related commands:
+  §§0bf(These only work if there is an update available.)
+  
+  §§0bf-§§wbf-i§§0bfgnore      §§wnfIgnores the current update.
+  §§0bf-§§wbf-u§§0bfpdate      §§wnfUpdates the BastionCMD client.
+  
+§§0bf ──────────────────────────────────────────────────────────────§$
