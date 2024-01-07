@@ -105,9 +105,9 @@ $c
 │ create-logo              WL │  │ create-mcwebgui-app     WL! │
 ╰─────────────────────────────╯  ╰─────────────────────────────╯
 ╭─────────────────────────────╮  ╭─────────────────────────────╮
-│ Create a new MCPyGUI app.   │  │ Setup a new Quartz Server.  │
 │                             │  │                             │
-│ create-mcpygui-app      WL! │  │ setup-quartz-server     WL! │
+│            Error            │  │            Error            │
+│                             │  │                             │
 ╰─────────────────────────────╯  ╰─────────────────────────────╯
 
  ...15 more actions have been abreviated              --actions
@@ -236,3 +236,58 @@ $c
   
   
   ^^^ This might be unused, I'll have to see
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+ ──────────────────────────────────────────────────────────────
+ 
+      The Discord invite has been opened in your Browser!
+
+               If it didn't, use the link below:
+                     discord.gg/KvZJGqMEhU
+ 
+ ──────────────────────────────────────────────────────────────
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ──────────────────────────────────────────────────────────────
+ 
+     The GitHub repository has been opened in your Browser!
+
+               If it didn't, use the link below:
+                github.com/BastionMC/BastionCMD
+ 
+ ──────────────────────────────────────────────────────────────
+ 
+ 
