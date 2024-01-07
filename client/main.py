@@ -1,3 +1,18 @@
+import json
+
+try:
+    with open("options.json", "r") as file:
+        options = json.load(file)
+except FileNotFoundError:
+    options = {
+        "skipped_update": None,
+        "in_dev_warning": True,
+        "auto_install": False
+    }
+
+    with open("options.json", "w") as file:
+        json.dump(options, file, separators=(",", ":"))
+
 import cticf, server, action, formatting, os, sys, requests, traceback, crash_handler
 from pathlib import Path
 import feature.settings, feature.actions, feature.help, feature.discord, feature.github, feature.ignore, feature.update
@@ -122,7 +137,7 @@ def intro_actions():
             crash_handler.error(traceback.format_exc())
 
     if failed_to_load:
-        crash_handler.error(failed_to_load_error, reason=formatting.split_up("Error Note: Seems like there was an IndexError. This is probably because there aren't enough actions. (An amount of 2, 4, or 6 is required for the client to run flawlessly. 1, 3, or 5 won't work.) Don't worry, the client can still run, you'll just be seeing this error every time. You can disable non-fatal errors in the settings.", 64))
+        crash_handler.error(failed_to_load_error, reason=formatting.split_up("Error Note: Seems like there was an IndexError. This is probably because there aren't enough actions. (An amount of 2, 4, or 6 is required for the client to run flawlessly. 1, 3, or 5 won't work.) Don't worry, the client can still run, you'll just be seeing this error every time.", 64))
 
     if action_amount == 7:
         print("\n" + cticf.inserts(ui["action_abreviated"], 1))
@@ -139,7 +154,7 @@ def intro():
     print("\n" + ui["requirements"]["banner"] + "\n\n" + ui["divider"])
     
     if needs_update[0]:
-        print("\n" + cticf.inserts(ui["needs_update"], needs_update[1]) + "\n\n" + ui["divider"])
+        print("\n" + cticf.inserts(ui["needs_update"], server.version, needs_update[1]) + "\n\n" + ui["divider"])
     
     print("\n" + ui["commands"] + "\n\n" + ui["divider"] + "\n")
 
@@ -183,7 +198,8 @@ if has_connection and needs_update[0]:
 elif not(has_connection):
     print("\n" + ui["dialogs"]["no_connection"])
 
-print("\n" + ui["dialogs"]["in_development"]) # TODO: Remove once project is complete
+if options["in_dev_warning"]:
+    print("\n" + ui["dialogs"]["in_development"]) # TODO: Remove once project is complete
 
 try:
     intro()
