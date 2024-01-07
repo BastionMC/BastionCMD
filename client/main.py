@@ -168,6 +168,7 @@ def input_main():
             input_run(type="action", input_string=user_input)
         elif user_input in ["cls", "clear"]:
             formatting.clear_screen()
+            print("\n" + ui["commands"] + "\n\n" + ui["divider"] + "\n")
         else:
             print(ui["input_error"]["action"])
 
