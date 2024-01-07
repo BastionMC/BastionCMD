@@ -50,7 +50,6 @@ def run():
 
     while in_settings:
         formatting.clear_screen()
-        print(options)
         print_settings()
         print(pre_promt)
         pre_promt = ""

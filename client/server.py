@@ -32,7 +32,7 @@ def get_version():
 
 def needs_update():
     version_json = get_version()
-    if version in version_json["valid"] and not(version == version_json["latest"]) and not(version == options["skipped_update"]):
+    if version in version_json["valid"] and not(version == version_json["latest"]) and not(version_json["latest"] == options["skipped_update"]):
         return [True, version_json["latest"]]
     else:
         return [False, version_json["latest"]]
