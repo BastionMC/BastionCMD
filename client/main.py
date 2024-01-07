@@ -144,7 +144,6 @@ def intro():
     print("\n" + ui["commands"] + "\n\n" + ui["divider"] + "\n")
 
 def input_run(type: str="action", input_string: str=""):
-    print("valid", input_string)
     match type:
         case "action":
             action.run_action(input_string)
