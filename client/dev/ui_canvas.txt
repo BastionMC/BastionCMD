@@ -298,3 +298,41 @@ $c
 ╭─ v ──────────────────────────────────────────────────────────╮
 │                       Ignored update.                        │
 ╰──────────────────────────────────────────────────────────────╯
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ──────────────────────────── Help ────────────────────────────
+ 
+  --actions     Shows a list of possible actions.
+  --help        Shows you this help page. Hi!
+  --settings    Opens the settings page.
+  --discord     Opens an invite link to our Discord server.
+  --github      Opens link to BastionCMD's GitHub repository.
+  
+  Settings only commands:
+  
+  --save        Saves settings and returns to action prompt.
+  --reset       Resets your settings, ignored update included.
+  
+ ──────────────────────────────────────────────────────────────
