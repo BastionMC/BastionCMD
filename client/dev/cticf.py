@@ -2,10 +2,10 @@
 #      Copyright (c) Bastion 2024
 # CTICF is licensed under the MIT license.
 
-import re
+import re, os
 from colorama import *
 
-just_fix_windows_console()
+if os.name() == "nt": just_fix_windows_console()
 
 def get_color(color: str):
     ground, brightness = {
