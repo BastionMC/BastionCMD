@@ -5,7 +5,7 @@
 import re, os
 from colorama import *
 
-if os.name() == "nt": just_fix_windows_console()
+if os.name == "nt": just_fix_windows_console()
 
 def get_color(color: str):
     ground, brightness = {
